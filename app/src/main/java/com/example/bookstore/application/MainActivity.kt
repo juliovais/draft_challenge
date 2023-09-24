@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.bookstore.R
 import com.example.bookstore.application.viewmodels.BookViewModel
+import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.repositories.retrofit.BookRepositoryImpl
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,7 +27,28 @@ private val bookViewModel by viewModels<BookViewModel>()
 
         myButton.setOnClickListener {
 
-            bookViewModel.test(image)
+            val dataStore = SettingsDataStore()
+
+            lifecycleScope.launch {
+
+                val DBCreated = dataStore.readBooleanValue(applicationContext, "test")
+
+                if (!DBCreated) {
+
+                    println("if")
+
+                    bookViewModel.test(image)
+
+                    dataStore.saveBooleanValue(applicationContext, "test", true)
+                } else {
+
+                    println("else")
+                }
+            }
+
+
+
+
         }
     }
 }
