@@ -71,7 +71,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
 
     // Coil
-    implementation("io.coil-kt:coil:1.1.1")
+    implementation("io.coil-kt:coil:2.2.2")
 
     // Room libraries
     implementation("androidx.room:room-runtime:2.5.2")
@@ -80,6 +80,10 @@ dependencies {
 
     //Data Store
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
     //TODO: organizar esses imports do gradle
 }

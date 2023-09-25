@@ -37,7 +37,7 @@ private val bookViewModel by viewModels<BookViewModel>()
 
                     println("if")
 
-                    bookViewModel.test(image)
+                    bookViewModel.test()
 
                     dataStore.saveBooleanValue(applicationContext, "test", true)
                 } else {

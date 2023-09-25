@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listVolumesFragment">
+
+    <fragment
+        android:id="@+id/listVolumesFragment"
+        android:name="com.example.bookstore.ListVolumesFragment"
+        android:label="fragment_list_volumes"
+        tools:layout="@layout/fragment_list_volumes" >
+        <action
+            android:id="@+id/action_listVolumesFragment_to_volumeDetailFragment"
+            app:destination="@id/volumeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/volumeDetailFragment"
+        android:name="com.example.bookstore.VolumeDetailFragment"
+        android:label="fragment_volume_detail"
+        tools:layout="@layout/fragment_volume_detail" />
+</navigation>

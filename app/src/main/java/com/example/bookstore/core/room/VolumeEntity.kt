@@ -15,7 +15,7 @@ data class VolumeEntity(
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "thumbnail")
-    val thumbnail: String? = null,
+    var thumbnail: String? = null,
     @ColumnInfo(name = "buy_link")
-    val buyLink: String? = null
+    var buyLink: String? = null
 )
