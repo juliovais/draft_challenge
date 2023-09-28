@@ -18,5 +18,9 @@
         android:id="@+id/volumeDetailFragment"
         android:name="com.example.bookstore.VolumeDetailFragment"
         android:label="fragment_volume_detail"
-        tools:layout="@layout/fragment_volume_detail"/>
+        tools:layout="@layout/fragment_volume_detail">
+        <argument
+            android:name="idVolume"
+            app:argType="string" />
+    </fragment>
 </navigation>

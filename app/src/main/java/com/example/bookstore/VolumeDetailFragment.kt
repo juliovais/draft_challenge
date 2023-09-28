@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.bookstore.application.viewmodels.BookViewModel
 import com.example.bookstore.core.room.BookRoomDatabase
 import com.example.bookstore.databinding.FragmentListVolumesBinding
@@ -14,6 +15,8 @@ import com.example.bookstore.databinding.FragmentVolumeDetailBinding
 import kotlinx.coroutines.launch
 
 class VolumeDetailFragment : Fragment() {
+
+    val args: VolumeDetailFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentVolumeDetailBinding
     private val bookViewModel by activityViewModels<BookViewModel>()
@@ -28,7 +31,7 @@ class VolumeDetailFragment : Fragment() {
         binding.viewModel = bookViewModel
 
         lifecycleScope.launch {
-            val volume = bookViewModel.getVolume(10)
+            val volume = bookViewModel.getVolume(args.idVolume.toInt())
 
             println(volume.id)
             println(volume.title)

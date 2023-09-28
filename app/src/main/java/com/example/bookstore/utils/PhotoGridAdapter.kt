@@ -46,8 +46,8 @@ class PhotoGridAdapter :
 
         viewHolder.itemView.setOnClickListener {
 
-            val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment()
-            //val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment(viewHolder.binding.photo.id.toInt())
+            val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment("5")
+
             findNavController(parent).navigate(action)
         }
 
