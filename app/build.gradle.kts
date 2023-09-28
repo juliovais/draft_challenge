@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp") version "1.8.0-1.0.8"
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -82,8 +83,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     //Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.0")
 
     //TODO: organizar esses imports do gradle
 }

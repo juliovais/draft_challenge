@@ -1,10 +1,16 @@
 package com.example.bookstore.utils
 
+import android.text.Layout.Directions
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bookstore.ListVolumesFragment
+import com.example.bookstore.ListVolumesFragmentDirections
 import com.example.bookstore.core.retrofit.CoverImage
 import com.example.bookstore.databinding.FragmentVolumeItemBinding
 
@@ -12,7 +18,7 @@ class PhotoGridAdapter :
     ListAdapter<CoverImage, PhotoGridAdapter.MarsPhotosViewHolder>(DiffCallback) {
 
     class MarsPhotosViewHolder(
-        private var binding: FragmentVolumeItemBinding
+        var binding: FragmentVolumeItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(marsPhoto: CoverImage) {
             binding.photo = marsPhoto
@@ -34,9 +40,18 @@ class PhotoGridAdapter :
         parent: ViewGroup,
         viewType: Int
     ): MarsPhotosViewHolder {
-        return MarsPhotosViewHolder(
+        val viewHolder = MarsPhotosViewHolder(
             FragmentVolumeItemBinding.inflate(LayoutInflater.from(parent.context))
         )
+
+        viewHolder.itemView.setOnClickListener {
+
+            val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment()
+            //val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment(viewHolder.binding.photo.id.toInt())
+            findNavController(parent).navigate(action)
+        }
+
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: MarsPhotosViewHolder, position: Int) {

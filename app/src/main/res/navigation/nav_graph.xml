@@ -9,7 +9,7 @@
         android:id="@+id/listVolumesFragment"
         android:name="com.example.bookstore.ListVolumesFragment"
         android:label="fragment_list_volumes"
-        tools:layout="@layout/fragment_list_volumes" >
+        tools:layout="@layout/fragment_list_volumes">
         <action
             android:id="@+id/action_listVolumesFragment_to_volumeDetailFragment"
             app:destination="@id/volumeDetailFragment" />
@@ -18,5 +18,5 @@
         android:id="@+id/volumeDetailFragment"
         android:name="com.example.bookstore.VolumeDetailFragment"
         android:label="fragment_volume_detail"
-        tools:layout="@layout/fragment_volume_detail" />
+        tools:layout="@layout/fragment_volume_detail"/>
 </navigation>

@@ -25,6 +25,11 @@ class BookViewModel @Inject constructor(
     private val _photos = MutableLiveData<List<CoverImage>>()
     val photos: LiveData<List<CoverImage>> = _photos
 
+    suspend fun getVolume(id: Int): VolumeEntity {
+
+        return BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+    }
+
     suspend fun createDatabase() {
 
         val response = repository.getVolumes("ios", 20, 0)
