@@ -17,5 +17,7 @@ data class VolumeEntity(
     @ColumnInfo(name = "thumbnail")
     var thumbnail: String? = null,
     @ColumnInfo(name = "buy_link")
-    var buyLink: String? = null
+    var buyLink: String? = null,
+    @ColumnInfo(name = "favorite")
+    var favorite: Boolean = false
 )

@@ -13,6 +13,7 @@ import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.core.retrofit.CoverImage
 import com.example.bookstore.core.room.BookRoomDatabase
 import com.example.bookstore.core.room.VolumeEntity
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.GlobalScope
 
 @HiltViewModel
@@ -85,5 +86,24 @@ class BookViewModel @Inject constructor(
 //TODO: deixar tudo dentro do coroutine?
 
 
+    }
+
+    fun changeFilterFavorites(isChecked: Boolean) {
+
+        viewModelScope.launch {
+            val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes(isChecked)
+            val covers = mutableListOf<CoverImage>()
+
+            volumes.forEach { volume ->
+
+                volume.thumbnail?.let {
+
+                    val cover = CoverImage(volume.id.toString(), it)
+                    covers.add(cover)
+                }
+            }
+
+            _photos.postValue(covers)
+        }
     }
 }

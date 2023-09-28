@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface VolumeDao {
 
-    @Query("SELECT * from volume")
-    suspend fun getvolumes(): List<VolumeEntity>
+    @Query("SELECT * from volume where favorite = :favorite")
+    suspend fun getvolumes(favorite: Boolean = false): List<VolumeEntity>
 
     @Insert
     suspend fun insert(volumeEntity: VolumeEntity)
