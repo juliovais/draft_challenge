@@ -4,16 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.bookstore.application.viewmodels.BookViewModel" />
+        
+        <import type="android.view.View" />
     </data>
 
-    <ImageView
-        android:id="@+id/mars_image"
-        android:layout_width="wrap_content"
-        android:layout_height="170dp"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-        android:padding="4dp" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.volumeDetail.title}" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.volumeDetail.authors}" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.volumeDetail.description}" />
+
+        <CheckBox
+            android:id="@+id/favorite_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{viewModel.volumeDetail.favorite}"
+            android:onCheckedChanged="@{(view, isChecked) -> viewModel.updateFavorite(isChecked)}"
+            android:text="@string/favorites" />
+
+        <TextView
+            android:id="@+id/buy_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.volumeDetail.buyLink == null ? View.GONE : View.VISIBLE}"
+            android:text="@{viewModel.volumeDetail.buyLink}" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

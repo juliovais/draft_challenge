@@ -30,21 +30,8 @@ class VolumeDetailFragment : Fragment() {
 
         binding.viewModel = bookViewModel
 
-        lifecycleScope.launch {
-            val volume = bookViewModel.getVolume(args.idVolume.toInt())
+        bookViewModel.getVolume(args.idVolume.toInt())
 
-            println(volume.id)
-            println(volume.title)
-            println(volume.authors)
-            println(volume.description)
-            println(volume.thumbnail)
-            println(volume.buyLink)
-            println(volume.favorite)
-        }
-
-
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_volume_detail, container, false)
+        return binding.root
     }
 }

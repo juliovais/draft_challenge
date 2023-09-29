@@ -11,10 +11,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.core.retrofit.CoverImage
+import com.example.bookstore.core.retrofit.Volume
 import com.example.bookstore.core.room.BookRoomDatabase
 import com.example.bookstore.core.room.VolumeEntity
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @HiltViewModel
 class BookViewModel @Inject constructor(
@@ -25,9 +28,30 @@ class BookViewModel @Inject constructor(
     private val _photos = MutableLiveData<List<CoverImage>>()
     val photos: LiveData<List<CoverImage>> = _photos
 
-    suspend fun getVolume(id: Int): VolumeEntity {
+    private val _volumeDetail = MutableLiveData<VolumeEntity>()
+    val volumeDetail: LiveData<VolumeEntity> = _volumeDetail
 
-        return BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+    private val _filterFavorite = MutableLiveData(false)
+    val filterFavorite: LiveData<Boolean> = _filterFavorite
+
+    fun getVolume(id: Int) {
+
+        viewModelScope.launch {
+            _volumeDetail.value = BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+        }
+    }
+
+    fun updateFavorite(isChecked: Boolean) {
+
+        val volume = _volumeDetail.value
+        volume?.let {
+
+            it.favorite = isChecked
+
+            viewModelScope.launch {
+                BookRoomDatabase.getDatabase(appContext).bookDao().update(it)
+            }
+        }
     }
 
     suspend fun createDatabase() {
@@ -73,7 +97,7 @@ class BookViewModel @Inject constructor(
                 dataStore.saveBooleanValue(appContext, "test", true)
             }
 
-            val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes()
+            val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes(_filterFavorite.value!!)
             val covers = mutableListOf<CoverImage>()
 
             volumes.forEach { volume ->
@@ -94,6 +118,8 @@ class BookViewModel @Inject constructor(
     }
 
     fun changeFilterFavorites(isChecked: Boolean) {
+
+        _filterFavorite.value = isChecked
 
         viewModelScope.launch {
             val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes(isChecked)
