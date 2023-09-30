@@ -65,7 +65,6 @@ class BookViewModel @Inject constructor(
     }
 
     fun loadData() {
-//TODO: refatorar essa lógica usando repository
         val dataStore = SettingsDataStore()
 
         viewModelScope.launch {
