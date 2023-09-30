@@ -1,16 +1,12 @@
 package com.example.bookstore.utils
 
-import android.text.Layout.Directions
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bookstore.ListVolumesFragment
-import com.example.bookstore.ListVolumesFragmentDirections
+import com.example.bookstore.application.fragments.ListVolumesFragmentDirections
 import com.example.bookstore.core.retrofit.CoverImage
 import com.example.bookstore.databinding.FragmentVolumeItemBinding
 
