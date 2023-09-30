@@ -60,6 +60,8 @@ class BookViewModel @Inject constructor(
 
         val data = response.data
 
+        val volumeList = mutableListOf<VolumeEntity>()
+
         data?.items?.forEach { item ->
 
             val volume = VolumeEntity(
@@ -77,9 +79,10 @@ class BookViewModel @Inject constructor(
 
                 volume.buyLink = it
             }
-//TODO: fazer insert com List
-            BookRoomDatabase.getDatabase(appContext).bookDao().insert(volume)
+
+            volumeList.add(volume)
         }
+        BookRoomDatabase.getDatabase(appContext).bookDao().insert(volumeList)
     }
 
     fun loadData() {
