@@ -16,7 +16,7 @@ interface VolumeDao {
     suspend fun getvolume(id: Int): VolumeEntity
 
     @Insert
-    suspend fun insert(volumeEntity: VolumeEntity)
+    suspend fun insert(volumeEntity: List<VolumeEntity>)
 
     @Update
     suspend fun update(volumeEntity: VolumeEntity)

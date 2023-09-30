@@ -11,17 +11,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.core.retrofit.CoverImage
-import com.example.bookstore.core.retrofit.Volume
 import com.example.bookstore.core.room.BookRoomDatabase
 import com.example.bookstore.core.room.VolumeEntity
-import com.google.android.material.chip.Chip
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.example.bookstore.repositories.room.RoomRepository
+import com.example.bookstore.utils.ResultAPI
 
 @HiltViewModel
 class BookViewModel @Inject constructor(
-    private val repository: BookRepository,
+    private val repositoryAPI: BookRepository,
+    private val repositoryDB: RoomRepository,
     private val appContext: Application
 ) : ViewModel() {
 
@@ -54,35 +52,16 @@ class BookViewModel @Inject constructor(
         }
     }
 
-    suspend fun createDatabase() {
+    private suspend fun createDatabase() {
 
-        val response = repository.getVolumes("ios", 20, 0)
+        val response = repositoryAPI.getVolumes("ios", 20, 0)
 
-        val data = response.data
+        if (response is ResultAPI.Success) {
 
-        val volumeList = mutableListOf<VolumeEntity>()
-
-        data?.items?.forEach { item ->
-
-            val volume = VolumeEntity(
-                title = item.volumeInfo.title,
-                authors = item.volumeInfo.authors.joinToString(separator = ", "),
-                description = item.volumeInfo.description
-            )
-
-            item.volumeInfo.imageLinks?.thumbnail.let {
-
-                volume.thumbnail = it
+            response.data?.let {
+                repositoryDB.populateDatabase(it)
             }
-
-            item.volumeInfo.saleInfo?.buyLink.let {
-
-                volume.buyLink = it
-            }
-
-            volumeList.add(volume)
         }
-        BookRoomDatabase.getDatabase(appContext).bookDao().insert(volumeList)
     }
 
     fun loadData() {
@@ -100,24 +79,8 @@ class BookViewModel @Inject constructor(
                 dataStore.saveBooleanValue(appContext, "test", true)
             }
 
-            val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes(_filterFavorite.value!!)
-            val covers = mutableListOf<CoverImage>()
-
-            volumes.forEach { volume ->
-
-                volume.thumbnail?.let {
-
-                    val cover = CoverImage(volume.id.toString(), it)
-                    covers.add(cover)
-                }
-            }
-
-            _photos.postValue(covers)
+            _photos.value = repositoryDB.getData(_filterFavorite.value!!)
         }
-
-//TODO: deixar tudo dentro do coroutine?
-
-
     }
 
     fun changeFilterFavorites(isChecked: Boolean) {
@@ -125,19 +88,7 @@ class BookViewModel @Inject constructor(
         _filterFavorite.value = isChecked
 
         viewModelScope.launch {
-            val volumes = BookRoomDatabase.getDatabase(appContext).bookDao().getvolumes(isChecked)
-            val covers = mutableListOf<CoverImage>()
-
-            volumes.forEach { volume ->
-
-                volume.thumbnail?.let {
-
-                    val cover = CoverImage(volume.id.toString(), it)
-                    covers.add(cover)
-                }
-            }
-
-            _photos.postValue(covers)
+            _photos.value = repositoryDB.getData(_filterFavorite.value!!)
         }
     }
 }
