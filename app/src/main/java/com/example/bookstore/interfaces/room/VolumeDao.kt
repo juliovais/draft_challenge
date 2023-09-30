@@ -1,10 +1,10 @@
-package com.example.bookstore.core.room
+package com.example.bookstore.interfaces.room
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
+import com.example.bookstore.core.room.VolumeEntity
 
 @Dao
 interface VolumeDao {
