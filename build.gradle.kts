@@ -3,7 +3,7 @@ plugins {
     id("com.android.application") version "8.0.2" apply false
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
 }
-//@TODO:criar variável pro dagger hilt e usar nos 2 gradles
+
 buildscript {
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.45")

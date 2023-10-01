@@ -12,8 +12,6 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-//@TODO: verificar imports não utilizados no projeto
-//@TODO: identar código de todos os arquivos do projeto
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -35,7 +33,6 @@ object AppModule {
         .build()
         .create(BooksAPI::class.java)
 
-//TODO: mover provider do repository de forma abstrata
     @Singleton
     @Provides
     fun provideBookRepository(api: BooksAPI): BookRepository = BookRepositoryImpl(api)

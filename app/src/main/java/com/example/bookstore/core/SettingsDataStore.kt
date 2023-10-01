@@ -8,8 +8,6 @@ import kotlinx.coroutines.flow.first
 
 // Create the DataStore
 val Context.dataStore by preferencesDataStore(name = "settings")
-//TODO: estudar codelab do DataStore para fazer possíveis adaptações
-//TODO: renomear nomes da classe, métodos, constantes, variáveis, etc
 class SettingsDataStore() {
     suspend fun saveBooleanValue(context: Context, key: String, value: Boolean) {
         val dataStoreKey = booleanPreferencesKey(key)
