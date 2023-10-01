@@ -16,7 +16,9 @@ class VolumeListAdapter :
     class VolumeListViewHolder(
         var binding: FragmentVolumeItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun bind(coverImage: CoverImage) {
+
             binding.cover = coverImage
             binding.executePendingBindings()
         }
@@ -24,10 +26,12 @@ class VolumeListAdapter :
 
     companion object DiffCallback : DiffUtil.ItemCallback<CoverImage>() {
         override fun areItemsTheSame(oldItem: CoverImage, newItem: CoverImage): Boolean {
+
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: CoverImage, newItem: CoverImage): Boolean {
+
             return oldItem.imgUrl == newItem.imgUrl
         }
     }
@@ -36,6 +40,7 @@ class VolumeListAdapter :
         parent: ViewGroup,
         viewType: Int
     ): VolumeListViewHolder {
+
         val viewHolder = VolumeListViewHolder(
             FragmentVolumeItemBinding.inflate(LayoutInflater.from(parent.context))
         )
@@ -54,6 +59,7 @@ class VolumeListAdapter :
     }
 
     override fun onBindViewHolder(holder: VolumeListViewHolder, position: Int) {
+
         val coverImage = getItem(position)
         holder.bind(coverImage)
     }
