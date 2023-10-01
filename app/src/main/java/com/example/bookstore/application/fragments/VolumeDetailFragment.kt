@@ -17,8 +17,10 @@ class VolumeDetailFragment : Fragment() {
     private lateinit var binding: FragmentVolumeDetailBinding
     private val bookViewModel by activityViewModels<BookViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         binding = FragmentVolumeDetailBinding.inflate(inflater)
 

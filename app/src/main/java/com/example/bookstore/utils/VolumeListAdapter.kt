@@ -42,8 +42,10 @@ class VolumeListAdapter :
 
         viewHolder.itemView.setOnClickListener {
 
-            val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment(
-                viewHolder.binding.cover?.id!!)
+            val action =
+                ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment(
+                    viewHolder.binding.cover?.id!!
+                )
 
             findNavController(parent).navigate(action)
         }
