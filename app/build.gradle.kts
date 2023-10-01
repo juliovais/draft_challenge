@@ -56,7 +56,7 @@ dependencies {
     //ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
-    // LiveData
+    //LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     //Retrofit
@@ -68,13 +68,13 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.45")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
-    // Activity KTX for viewModels()
+    //Activity KTX for viewModels()
     implementation("androidx.activity:activity-ktx:1.7.2")
 
-    // Coil
+    //Coil
     implementation("io.coil-kt:coil:2.2.2")
 
-    // Room libraries
+    //Room libraries
     implementation("androidx.room:room-runtime:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-ktx:2.5.2")
