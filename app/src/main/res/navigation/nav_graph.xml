@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/listVolumesFragment">
     <fragment
         android:id="@+id/listVolumesFragment"
         android:name="com.example.bookstore.application.fragments.ListVolumesFragment"
-        android:label="ListVolumesFragment" >
+        android:label="ListVolumesFragment">
         <action
             android:id="@+id/action_listVolumesFragment_to_volumeDetailFragment"
             app:destination="@id/volumeDetailFragment" />
@@ -15,7 +14,7 @@
     <fragment
         android:id="@+id/volumeDetailFragment"
         android:name="com.example.bookstore.application.fragments.VolumeDetailFragment"
-        android:label="VolumeDetailFragment" >
+        android:label="VolumeDetailFragment">
         <argument
             android:name="idVolume"
             app:argType="integer" />
