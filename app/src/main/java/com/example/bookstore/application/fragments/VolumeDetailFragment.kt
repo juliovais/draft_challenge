@@ -12,7 +12,7 @@ import com.example.bookstore.databinding.FragmentVolumeDetailBinding
 
 class VolumeDetailFragment : Fragment() {
 
-    val args: VolumeDetailFragmentArgs by navArgs()
+    private val args: VolumeDetailFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentVolumeDetailBinding
     private val bookViewModel by activityViewModels<BookViewModel>()

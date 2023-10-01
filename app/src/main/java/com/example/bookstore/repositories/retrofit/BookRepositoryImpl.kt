@@ -25,7 +25,7 @@ class BookRepositoryImpl @Inject constructor(private val api: BooksAPI) : BookRe
                 ResultAPI.Error(response.message())
             }
         } catch (e: Exception) {
-            ResultAPI.Error(e.message ?: "An error occured")
+            ResultAPI.Error(e.message ?: "Exception occurred")
         }
     }
 }

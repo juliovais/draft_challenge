@@ -39,7 +39,7 @@ class RoomRepository @Inject constructor(private val appContext: Application) {
     suspend fun getData(filterFavorite: Boolean): List<CoverImage> {
 
         val volumes = BookRoomDatabase.getDatabase(appContext).bookDao()
-            .getvolumes(filterFavorite)
+            .getVolumes(filterFavorite)
         val covers = mutableListOf<CoverImage>()
 
         volumes.forEach { volume ->
@@ -61,6 +61,6 @@ class RoomRepository @Inject constructor(private val appContext: Application) {
 
     suspend fun getVolume(id: Int): VolumeEntity {
 
-        return BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+        return BookRoomDatabase.getDatabase(appContext).bookDao().getVolume(id)
     }
 }
