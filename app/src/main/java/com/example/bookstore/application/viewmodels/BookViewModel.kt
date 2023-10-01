@@ -11,8 +11,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.core.retrofit.CoverImage
-import com.example.bookstore.core.room.BookRoomDatabase
 import com.example.bookstore.core.room.VolumeEntity
+import com.example.bookstore.interfaces.room.VolumeDao
 import com.example.bookstore.repositories.room.RoomRepository
 import com.example.bookstore.utils.ResultAPI
 
@@ -23,8 +23,8 @@ class BookViewModel @Inject constructor(
     private val appContext: Application
 ) : ViewModel() {
 
-    private val _photos = MutableLiveData<List<CoverImage>>()
-    val photos: LiveData<List<CoverImage>> = _photos
+    private val _coverList = MutableLiveData<List<CoverImage>>()
+    val coverList: LiveData<List<CoverImage>> = _coverList
 
     private val _volumeDetail = MutableLiveData<VolumeEntity>()
     val volumeDetail: LiveData<VolumeEntity> = _volumeDetail
@@ -69,16 +69,16 @@ class BookViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            val databaseCreated = dataStore.readBooleanValue(appContext, "test")
+            val databaseCreated = dataStore.getBoolean(appContext, VolumeDao.FIRST_LOAD_DONE)
 
             if (!databaseCreated) {
 
                 createDatabase()
 
-                dataStore.saveBooleanValue(appContext, "test", true)
+                dataStore.setBoolean(appContext, VolumeDao.FIRST_LOAD_DONE, true)
             }
 
-            _photos.value = repositoryDB.getData(_filterFavorite.value!!)
+            _coverList.value = repositoryDB.getData(_filterFavorite.value!!)
         }
     }
 
@@ -87,7 +87,7 @@ class BookViewModel @Inject constructor(
         _filterFavorite.value = isChecked
 
         viewModelScope.launch {
-            _photos.value = repositoryDB.getData(_filterFavorite.value!!)
+            _coverList.value = repositoryDB.getData(_filterFavorite.value!!)
         }
     }
 }

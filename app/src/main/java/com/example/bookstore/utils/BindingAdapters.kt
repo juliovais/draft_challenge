@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.bookstore.core.retrofit.CoverImage
 
-@BindingAdapter("listData")
+@BindingAdapter("coverList")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<CoverImage>?) {
-    val adapter = recyclerView.adapter as PhotoGridAdapter
+    val adapter = recyclerView.adapter as VolumeListAdapter
     adapter.submitList(data)
 }
 

@@ -10,14 +10,14 @@ import com.example.bookstore.application.fragments.ListVolumesFragmentDirections
 import com.example.bookstore.core.retrofit.CoverImage
 import com.example.bookstore.databinding.FragmentVolumeItemBinding
 
-class PhotoGridAdapter :
-    ListAdapter<CoverImage, PhotoGridAdapter.MarsPhotosViewHolder>(DiffCallback) {
+class VolumeListAdapter :
+    ListAdapter<CoverImage, VolumeListAdapter.VolumeListViewHolder>(DiffCallback) {
 
-    class MarsPhotosViewHolder(
+    class VolumeListViewHolder(
         var binding: FragmentVolumeItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsPhoto: CoverImage) {
-            binding.photo = marsPhoto
+        fun bind(coverImage: CoverImage) {
+            binding.cover = coverImage
             binding.executePendingBindings()
         }
     }
@@ -28,22 +28,22 @@ class PhotoGridAdapter :
         }
 
         override fun areContentsTheSame(oldItem: CoverImage, newItem: CoverImage): Boolean {
-            return oldItem.imgSrcUrl == newItem.imgSrcUrl
+            return oldItem.imgUrl == newItem.imgUrl
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarsPhotosViewHolder {
-        val viewHolder = MarsPhotosViewHolder(
+    ): VolumeListViewHolder {
+        val viewHolder = VolumeListViewHolder(
             FragmentVolumeItemBinding.inflate(LayoutInflater.from(parent.context))
         )
 
         viewHolder.itemView.setOnClickListener {
 
             val action = ListVolumesFragmentDirections.actionListVolumesFragmentToVolumeDetailFragment(
-                viewHolder.binding.photo?.id!!)
+                viewHolder.binding.cover?.id!!)
 
             findNavController(parent).navigate(action)
         }
@@ -51,8 +51,8 @@ class PhotoGridAdapter :
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: MarsPhotosViewHolder, position: Int) {
-        val marsPhoto = getItem(position)
-        holder.bind(marsPhoto)
+    override fun onBindViewHolder(holder: VolumeListViewHolder, position: Int) {
+        val coverImage = getItem(position)
+        holder.bind(coverImage)
     }
 }

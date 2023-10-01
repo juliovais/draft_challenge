@@ -6,15 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.bookstore.utils.PhotoGridAdapter
+import com.example.bookstore.utils.VolumeListAdapter
 import com.example.bookstore.application.viewmodels.BookViewModel
-import com.example.bookstore.core.SettingsDataStore
 import com.example.bookstore.databinding.FragmentListVolumesBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ListVolumesFragment : Fragment() {
@@ -34,7 +29,7 @@ class ListVolumesFragment : Fragment() {
 
         bookViewModel.loadData()
 
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.coverList.adapter = VolumeListAdapter()
 
         return binding.root
     }

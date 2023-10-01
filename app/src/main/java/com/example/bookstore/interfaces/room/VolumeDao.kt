@@ -20,4 +20,9 @@ interface VolumeDao {
 
     @Update
     suspend fun update(volumeEntity: VolumeEntity)
+
+    companion object {
+
+        const val FIRST_LOAD_DONE = "FIRST_LOAD_DONE"
+    }
 }

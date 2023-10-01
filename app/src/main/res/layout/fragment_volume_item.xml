@@ -5,16 +5,16 @@
 
     <data>
         <variable
-            name="photo"
+            name="cover"
             type="com.example.bookstore.core.retrofit.CoverImage" />
     </data>
 
     <ImageView
-        android:id="@+id/mars_image"
+        android:id="@+id/cover_image"
         android:layout_width="wrap_content"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:padding="4dp"
-        app:imageUrl="@{photo.imgSrcUrl}" />
+        app:imageUrl="@{cover.imgUrl}" />
 </layout>
