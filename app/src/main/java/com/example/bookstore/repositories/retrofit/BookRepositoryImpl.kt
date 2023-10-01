@@ -1,6 +1,5 @@
 package com.example.bookstore.repositories.retrofit
 
-import com.example.bookstore.core.retrofit.Volume
 import com.example.bookstore.core.retrofit.VolumeResponse
 import com.example.bookstore.interfaces.retrofit.BookRepository
 import com.example.bookstore.interfaces.retrofit.BooksAPI

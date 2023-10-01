@@ -6,7 +6,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 
-// Create the DataStore
 val Context.dataStore by preferencesDataStore(name = "settings")
 class SettingsDataStore() {
     suspend fun setBoolean(context: Context, key: String, value: Boolean) {
