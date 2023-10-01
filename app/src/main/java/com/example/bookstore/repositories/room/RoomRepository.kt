@@ -46,7 +46,7 @@ class RoomRepository @Inject constructor(private val appContext: Application) {
 
             volume.thumbnail?.let {
 
-                val cover = CoverImage(volume.id.toString(), it)
+                val cover = CoverImage(volume.id, it)
                 covers.add(cover)
             }
         }

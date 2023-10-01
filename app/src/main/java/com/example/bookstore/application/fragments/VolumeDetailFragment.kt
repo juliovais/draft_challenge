@@ -26,7 +26,7 @@ class VolumeDetailFragment : Fragment() {
 
         binding.viewModel = bookViewModel
 
-        bookViewModel.getVolume(args.idVolume.toInt())
+        bookViewModel.getVolume(args.idVolume)
 
         return binding.root
     }

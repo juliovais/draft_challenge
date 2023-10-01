@@ -21,7 +21,7 @@ package com.example.bookstore.core.retrofit
  * The property names of this data class are used by Moshi to match the names of values in JSON.
  */
 data class CoverImage(
-        val id: String,
+        val id: Int,
         // used to map img_src from the JSON to imgSrcUrl in our class
         val imgUrl: String
 )

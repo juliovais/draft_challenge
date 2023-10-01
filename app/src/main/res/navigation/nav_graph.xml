@@ -18,6 +18,6 @@
         android:label="VolumeDetailFragment" >
         <argument
             android:name="idVolume"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>
