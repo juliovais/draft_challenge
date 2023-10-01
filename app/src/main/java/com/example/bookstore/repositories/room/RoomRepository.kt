@@ -53,4 +53,14 @@ class RoomRepository @Inject constructor(private val appContext: Application) {
 
         return covers
     }
+
+    suspend fun updateVolume(volume: VolumeEntity) {
+
+        BookRoomDatabase.getDatabase(appContext).bookDao().update(volume)
+    }
+
+    suspend fun getVolume(id: Int): VolumeEntity {
+
+        return BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+    }
 }

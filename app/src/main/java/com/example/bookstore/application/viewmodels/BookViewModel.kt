@@ -35,7 +35,7 @@ class BookViewModel @Inject constructor(
     fun getVolume(id: Int) {
 
         viewModelScope.launch {
-            _volumeDetail.value = BookRoomDatabase.getDatabase(appContext).bookDao().getvolume(id)
+            _volumeDetail.value = repositoryDB.getVolume(id)
         }
     }
 
@@ -47,7 +47,7 @@ class BookViewModel @Inject constructor(
             it.favorite = isChecked
 
             viewModelScope.launch {
-                BookRoomDatabase.getDatabase(appContext).bookDao().update(it)
+                repositoryDB.updateVolume(it)
             }
         }
     }
